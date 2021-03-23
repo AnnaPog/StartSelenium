@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.xml.bind.Element;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class HwSimpleTask {
@@ -59,6 +60,9 @@ public class HwSimpleTask {
 
         WebElement getPermanentAddress = wd.findElement(By.id("permanentAddress"));
         SelectElementTest(permanentAddress, getPermanentAddress);
+
+
+        SelectElementFromList(fullName, email, currentAddress, permanentAddress);
     }
 
     @Test
@@ -68,6 +72,33 @@ public class HwSimpleTask {
         System.out.println(text);
 
         Assert.assertTrue(text.contains(el1.getText()));
+    }
+
+    public void SelectElementFromList(WebElement e, WebElement e1, WebElement e2, WebElement e3){
+        List <WebElement> elements = wd.findElements(By.tagName("p"));
+        System.out.println(elements.size()+" elements");
+
+        WebElement el = elements.get(0);
+        String elText = el.getText();
+        System.out.println(elText);
+
+        WebElement el1 = elements.get(1);
+        String el1Text = el1.getText();
+        System.out.println(el1Text);
+
+        WebElement el2 = elements.get(2);
+        String el2Text = el2.getText();
+        System.out.println(el2Text);
+
+        WebElement el3 = elements.get(3);
+        String el3Text = el3.getText();
+        System.out.println(el3Text);
+
+        Assert.assertTrue(elText.contains(e.getText()));
+        Assert.assertTrue(el1Text.contains(e1.getText()));
+        Assert.assertTrue(el2Text.contains(e2.getText()));
+        Assert.assertTrue(el3Text.contains(e3.getText()));
+
     }
 
     public void fillField(WebElement el, String text){
